@@ -1,5 +1,7 @@
 """Simple Wikipedia scraping helper."""
 
+# pylint: disable=E1120
+
 import click
 from my_lib.bot import scrape
 
