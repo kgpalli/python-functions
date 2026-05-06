@@ -1,12 +1,18 @@
-import wikibot
+from my_lib.bot import scrape
+from click.testing import CliRunner
+from wikibot import cli
 
 
 def test_scrape(monkeypatch):
     monkeypatch.setattr(
-        wikibot,
+        bot,
         "fetch_summary",
-        lambda name, length: "Facebook is a social network.",
+        lambda name: f"This is a mocked summary for {name}.",
     )
-
-    result = wikibot.scrape("Facebook")
-    assert "facebook" in result.lower()
+    assert "Microsoft" in scrape("Microsoft")
+    
+def test_wikibot():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['--name','Microsoft'])
+    assert result.exit_code == 0
+    assert 'Microsoft' in result.output

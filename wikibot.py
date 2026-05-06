@@ -1,17 +1,17 @@
 """Simple Wikipedia scraping helper."""
 
-import wikipedia
+from my_lib.bot import scrape
+import click
+
+@click.command()
+@click.option("--name", default="Microsoft", help="The Wikipedia page to scrape.")
 
 
-def fetch_summary(name: str = "Microsoft", length: int = 2) -> str:
-    """Return a short Wikipedia summary from the wikipedia package."""
-    return wikipedia.summary(name, sentences=length)
-
-
-def scrape(name: str = "Microsoft", length: int = 2) -> str:
-    """Return a short Wikipedia summary for the given page name."""
-    return fetch_summary(name, length)
+def cli(name):
+    """Scrape a Wikipedia summary."""
+    result = scrape(name)
+    click.echo(click.style(result, fg="blue", bg="white", bold=True))
 
 
 if __name__ == "__main__":
-    print(scrape("Facebook"))
+    cli()

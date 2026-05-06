@@ -3,3 +3,4 @@ pytest
 wikipedia
 ipython
 black
+click
