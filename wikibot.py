@@ -1,15 +1,14 @@
 """Simple Wikipedia scraping helper."""
 
-from my_lib.bot import scrape
 import click
+from my_lib.bot import scrape
 
 @click.command()
 @click.option("--name", default="Microsoft", help="The Wikipedia page to scrape.")
-
-
-def cli(name):
+@click.option("--length", default=2, help="Number of sentences to return.")
+def cli(name, length):
     """Scrape a Wikipedia summary."""
-    result = scrape(name)
+    result = scrape(name, length)
     click.echo(click.style(result, fg="blue", bg="white", bold=True))
 
 
