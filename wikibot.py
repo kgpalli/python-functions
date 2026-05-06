@@ -1,11 +1,10 @@
-import wikipedia, warnings
+"""Simple Wikipedia scraping helper."""
 
-warnings.filterwarnings('ignore', message='urllib3 v2 only supports OpenSSL')
+import wikipedia
 
-
-def scrape(name="Microsoft",length=2):
-
-    result = wikipedia.summary(name,sentences=length)
+def scrape(name="Microsoft", length=2):
+    """Return a short Wikipedia summary for the given page name."""
+    result = wikipedia.summary(name, sentences=length)
     return result
 
 
