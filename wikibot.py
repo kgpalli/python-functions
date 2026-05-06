@@ -2,10 +2,16 @@
 
 import wikipedia
 
-def scrape(name="Microsoft", length=2):
+
+def fetch_summary(name: str = "Microsoft", length: int = 2) -> str:
+    """Return a short Wikipedia summary from the wikipedia package."""
+    return wikipedia.summary(name, sentences=length)
+
+
+def scrape(name: str = "Microsoft", length: int = 2) -> str:
     """Return a short Wikipedia summary for the given page name."""
-    result = wikipedia.summary(name, sentences=length)
-    return result
+    return fetch_summary(name, length)
 
 
-print(scrape("Facebook"))
+if __name__ == "__main__":
+    print(scrape("Facebook"))
