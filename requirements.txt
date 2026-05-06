@@ -4,3 +4,4 @@ wikipedia
 ipython
 black
 click
+fire
