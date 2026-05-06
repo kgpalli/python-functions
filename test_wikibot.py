@@ -7,7 +7,7 @@ def test_scrape(monkeypatch):
     monkeypatch.setattr(
         bot,
         "fetch_summary",
-        lambda name, length: f"This is a mocked summary for {name}.",
+        lambda name, sentences: f"This is a mocked summary for {name}.",
     )
     result = bot.scrape("Microsoft", 2)
     assert "Microsoft" in result
