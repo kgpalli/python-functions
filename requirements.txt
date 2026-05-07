@@ -5,3 +5,6 @@ ipython
 black
 click
 fire
+uvicorn
+pydantic
+fastapi
