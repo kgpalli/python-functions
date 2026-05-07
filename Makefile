@@ -11,7 +11,7 @@ format:
 	black .
 
 lint:
-	pylint wikibot.py
+	pylint --disable=R,C,E1120 *.py
 
 help:
 	@echo "Available commands:"
