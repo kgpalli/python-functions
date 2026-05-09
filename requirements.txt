@@ -1,10 +1,4 @@
-pylint
-pytest
-wikipedia
 ipython
-black
-click
+textblob
+wikipedia
 fire
-uvicorn
-pydantic
-fastapi
