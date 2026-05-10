@@ -1,21 +1,26 @@
-.PHONY: install test format lint help
-
 install:
-	python3 -m pip install -r requirements.txt
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
 test:
-	pytest
-	python3 -m pytest test_wikibot.py
+	python -m pytest -vv --cov=main --cov=calCLI --cov=mylib test_*.py
 
-format:
-	black .
+format:	
+	black *.py mylib/*.py
 
 lint:
-	pylint --disable=R,C,E1120 *.py
+	pylint --disable=R,C --extension-pkg-whitelist='pydantic' main.py --ignore-patterns=test_.*?py *.py  mylib/*.py
 
-help:
-	@echo "Available commands:"
-	@echo "  make install - Install dependencies from requirements.txt"
-	@echo "  make test    - Run pytest"
-	@echo "  make format  - Format code with black"
-	@echo "  make lint    - Lint code with pylint"
+container-lint:
+	docker run --rm -i hadolint/hadolint < Dockerfile
+
+refactor: format lint
+
+deploy:
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 561744971673.dkr.ecr.us-east-1.amazonaws.com
+	docker build -t logistics .
+	docker tag logistics:latest 561744971673.dkr.ecr.us-east-1.amazonaws.com/logistics:latest
+	docker push 561744971673.dkr.ecr.us-east-1.amazonaws.com/logistics:latest
+		
+		
+all: install lint test format deploy
