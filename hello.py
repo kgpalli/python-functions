@@ -1,6 +1,7 @@
-def add(x, y):
-    return x + y
+fruits = ["apple", "banana", "orange"]
 
+for fruit in fruits:
+    print(fruit)
 
-print(add(2, 2))
-# var=
+print(f"Total number of fruits: {len(fruits)}")
+
