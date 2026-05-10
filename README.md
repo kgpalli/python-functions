@@ -1,37 +1,22 @@
 # functions-from-zero
-live training
+A repo to learn functions.
 
-[![Python application test with Github Actions](https://github.com/noahgift/functions-from-zero/actions/workflows/main.yml/badge.svg)](https://github.com/noahgift/functions-from-zero/actions/workflows/main.yml)
+## Step 1:  Configure Development environment
 
+* Configure GitHub Codespaces or the equivalent (Cloud9, etc)
+* Create scaffold for structure of project:  `Makefile` `requirements.txt`
+* Optional (setup virtualenv) (install ipython outside of requirements.txt)
 
-### To call Microservice 
+## Step 2:  Get interactive debugging working
 
-something like this
-```bash
-curl -X 'POST' \
-  'https://noahgift-functions-from-zero-r7g59wcxx6x-8080.githubpreview.dev/wiki' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Microsoft"
-}'
+* Use IPython and ipdb
+
+```python
+x = 1
+y = 2
+#import ipdb; ipdb.set_trace()
+print(x + y)
 ```
 
-### Build container
+## Step3:  Build a library and use it
 
-`docker build .`
-`docker image ls`
-
-### Run container
-
-something like this
-
-`docker run -p 127.0.0.1:8080:8080 a81ce4f35866`
-
-### Invoke POST request
-
-run `invoke.sh`
-
-## References
-
-* [Watch Walkthrough on YouTube](https://youtu.be/KOAdCqpQSI4)
