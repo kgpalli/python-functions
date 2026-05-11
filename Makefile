@@ -1,15 +1,17 @@
+PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3
+
 install:
-	python3 -m pip install --upgrade pip &&\
-		python3 -m pip install -r requirements.txt
+	$(PYTHON) -m pip install --upgrade pip &&\
+		$(PYTHON) -m pip install -r requirements.txt
 
 test:
-	python3 -m pytest -vv --cov=main --cov=calCLI --cov=mylib test_*.py
+	$(PYTHON) -m pytest -vv --cov=main --cov=calCLI --cov=my_lib test_*.py
 
 format:	
-	black *.py mylib/*.py
+	black *.py my_lib/*.py
 
 lint:
-	pylint --disable=R,C --extension-pkg-whitelist='pydantic' main.py --ignore-patterns=test_.*?py *.py  mylib/*.py
+	pylint --disable=R,C --extension-pkg-whitelist='pydantic' main.py --ignore-patterns=test_.*?py *.py  my_lib/*.py
 
 container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile

@@ -1,17 +1,30 @@
-def add(x, y):
-    return x + y
+"""
+A calculator module
 
-def subtract(x, y):
-    return x - y
+"""
 
 
-def multiply(x, y):
-    return x * y
+def add(a, b):
+    """Add two numbers"""
+    return a + b
 
-def divide(x, y):
-    if y == 0:
-        raise ValueError("Cannot divide by zero")
-    return x / y
 
-def power(x, y):
-    return x ** y       
+def sub(a, b):
+    """Subtract two numbers"""
+    return a - b
+
+
+def mul(a, b):
+    """Multiply two numbers"""
+    return a * b
+
+
+def div(a, b):
+    """Divide two numbers"""
+    return a / b
+
+
+# build a function to calculate the power of a number with x as the base and y as the exponent
+def power(a, b):
+    """Power of a number"""
+    return a**b

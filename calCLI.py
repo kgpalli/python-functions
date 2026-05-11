@@ -1,62 +1,74 @@
-
 #!/usr/bin/env python3
 
-from my_lib.calc import add, subtract, multiply, divide, power  
-
+from my_lib.calc import add, sub, mul, div, power
 import click
+
 
 @click.group()
 def cli():
-    """Simple calculator CLI."""
+    """A calculator program"""
+
 
 @cli.command("add")
-@click.argument("x", type=float)
-@click.argument("y", type=float)
-def add_cmd(x, y):
-    """Add two numbers."""
-    result = add(x, y)
-    #use colorful output with add
+@click.argument("a", type=float)
+@click.argument("b", type=float)
+def add_cmd(a, b):
+    """Add two numbers
 
-    click.secho(f"{x} + {y} = {add(x, y)}", fg="green")
-
-@cli.command("subtract")
-@click.argument("x", type=float)
-@click.argument("y", type=float)
-def subtract_cmd(x, y):
-    """Subtract two numbers."""
-    result = subtract(x, y)
-    click.secho(f"{x} - {y} = {subtract(x, y)}", fg="yellow")   
-
-@cli.command("multiply")
-@click.argument("x", type=float)
-@click.argument("y", type=float)
-def multiply_cmd(x, y):
-    """Multiply two numbers."""
-    result = multiply(x, y)
-    click.secho(f"{x} * {y} = {multiply(x, y)}", fg="blue")
+    Example:
+    ./calCLI.py add 1 2
+    """
+    # use colored output to print the result
+    click.secho(f"{a} + {b} = {add(a, b)}", fg="green")
 
 
-@cli.command("divide")
-@click.argument("x", type=float)
-@click.argument("y", type=float)
-def divide_cmd(x, y):
-    """Divide two numbers."""
-    try:
-        result = divide(x, y)
-        click.secho(f"{x} / {y} = {divide(x, y)}", fg="red")
-    except ValueError as e:
-        click.secho(str(e), fg="red")
+@cli.command("sub")
+@click.argument("a", type=float)
+@click.argument("b", type=float)
+def sub_cmd(a, b):
+    """Subtract two numbers
+
+    Example:
+    ./calCLI.py sub 1 2
+    """
+    click.secho(f"{a} - {b} = {sub(a, b)}", fg="green")
+
+
+@cli.command("mul")
+@click.argument("a", type=float)
+@click.argument("b", type=float)
+def mul_cmd(a, b):
+    """Multiply two numbers
+
+    Example:
+    ./calCLI.py mul 1 2
+    """
+    click.secho(f"{a} * {b} = {mul(a, b)}", fg="green")
+
+
+@cli.command("div")
+@click.argument("a", type=float)
+@click.argument("b", type=float)
+def div_cmd(a, b):
+    """Divide two numbers
+
+    Example:
+    ./calCLI.py div 1 2
+    """
+    click.secho(f"{a} / {b} = {div(a, b)}", fg="green")
 
 
 @cli.command("power")
-@click.argument("x", type=float)
-@click.argument("y", type=float)
-def power_cmd(x, y):
-    """Raise x to the power of y."""
-    result = power(x, y)
-    click.secho(f"{x} ** {y} = {power(x, y)}", fg="magenta")
+@click.argument("a", type=float)
+@click.argument("b", type=float)
+def power_cmd(a, b):
+    """Power of a number
+
+    Example:
+    ./calCLI.py power 1 2
+    """
+    click.secho(f"{a} ** {b} = {power(a, b)}", fg="green")
 
 
-  
 if __name__ == "__main__":
     cli()

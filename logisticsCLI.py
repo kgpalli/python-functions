@@ -8,6 +8,7 @@ from my_lib.logistics import (
 )
 import click
 
+
 # build a click group
 @click.group()
 def cli():

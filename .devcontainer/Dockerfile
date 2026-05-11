@@ -1,11 +1,9 @@
-FROM public.ecr.aws/lambda/python:3.11
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.12
 
-RUN mkdir -p /app
-COPY ./main.py /app/
-COPY my_lib/ /app/my_lib/
-COPY ./requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-WORKDIR /app
-EXPOSE 8080
-CMD [ "main.py" ]
-ENTRYPOINT [ "python" ]
+WORKDIR /code
+
+COPY . /code
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
