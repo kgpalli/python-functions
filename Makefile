@@ -1,21 +1,24 @@
-.PHONY: install test format lint help
-
-install:
-	python3 -m pip install -r requirements.txt
-
-test:
-	pytest
-	python3 -m pytest test_wikibot.py
+rust-version:
+	@echo "Rust command-line utility versions:"
+	rustc --version 			#rust compiler
+	cargo --version 			#rust package manager
+	rustfmt --version			#rust code formatter
+	rustup --version			#rust toolchain manager
+	clippy-driver --version		#rust linter
 
 format:
-	black .
+	cargo fmt --quiet
 
 lint:
-	pylint --disable=R,C,E1120 *.py
+	cargo clippy --quiet
 
-help:
-	@echo "Available commands:"
-	@echo "  make install - Install dependencies from requirements.txt"
-	@echo "  make test    - Run pytest"
-	@echo "  make format  - Format code with black"
-	@echo "  make lint    - Lint code with pylint"
+test:
+	cargo test
+
+run:
+	cargo run
+
+release:
+	cargo build --release
+
+all: format lint test run
